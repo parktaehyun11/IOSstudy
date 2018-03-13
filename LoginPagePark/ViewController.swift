@@ -8,18 +8,60 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
 
+    var a: String?
+    var b: String?
+    
+    @IBOutlet weak var deviloperLogo: UILabel!
+    
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var idTextField: UITextField!
+    
+    
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    
+    @IBAction func logInButton(_ sender: UIButton) {
+        let printid = idTextField.text
+        a = printid
+        print(a!)
+        
+        
+        let printpw = passwordTextField.text
+        b = printpw
+        print(b!)
+    }
+    
+    
+    @IBAction func makeAccount(_ sender: Any) {
+        let makeAccountView = self.storyboard!.instantiateViewController(withIdentifier: "makeAccountView")
+        present(makeAccountView, animated: true, completion: nil)
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        idTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        idTextField.endEditing(true)
+        passwordTextField.endEditing(true)
+        return true
     }
-
-
+    
+    
+    /*
+    override func viewDidLayoutSubviews() {
+        self.deviloperLogo.sizeToFit()
+    }
+    */
 }
 
